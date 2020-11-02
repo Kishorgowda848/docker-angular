@@ -1,0 +1,17 @@
+
+# Stage 1
+# Installing node 
+FROM node:10-alpine
+#Make app directory 
+RUN mkdir  /app
+#Going to app directory
+WORKDIR /app
+COPY package.json /app
+
+#Installing npm dependncy because we were outsource the node_modules
+RUN npm install
+RUN npm install -g @angular/cli
+#copy all file to working directory folder
+COPY . .
+EXPOSE 4200
+CMD ["ng", "serve", "--host=0.0.0.0"]
